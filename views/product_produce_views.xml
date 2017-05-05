@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_add_raw_form_view" model="ir.ui.view">
+        <field name="name">stock.move.mrp.add.raw</field>
+        <field name="model">stock.move</field>
+        <field name="arch" type="xml">
+            <form string="Add Raw">
+                <group>
+                    <group>
+                        <field name="state" invisible="1"/>
+                        <field name="product_id"/>
+                        <label for="product_uom_qty"/>
+                        <div class="o_row">
+                            <field name="product_uom_qty"/>
+                            <field name="product_uom"/>
+                        </div>
+                        <field name="location_dest_id" invisible="1"/>
+                        <field name="price_unit" invisible="1"/>
+                        <field name="unit_factor" invisible="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_add_raw" string="Add Raw" type="object" class="btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="mrp_production_add_raw_form_view" model="ir.ui.view">
+        <field name="name">mrp.production.add_raw_form.inherit</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <button name="action_cancel" position="before">
+                <button name="button_add_raw" type="object" string="Add Raw" states="confirmed,planned,progress"/>
+            </button>
+        </field>
+    </record>
+</odoo>
