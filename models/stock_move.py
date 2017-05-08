@@ -1,7 +1,10 @@
 from odoo import api, models, fields, _
+from odoo.addons import decimal_precision as dp
 
 class StockMove(models.Model):
     _inherit = 'stock.move'
+
+    unit_factor = fields.Float('Unit Factor', digits=dp.get_precision('Product Unit of Measure'))
 
     @api.multi
     def action_add_raw(self):
